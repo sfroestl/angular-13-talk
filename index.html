@@ -6,13 +6,9 @@
 		<link rel="stylesheet" href="bower_components/reveal.js/css/reveal.css" />
 		<link rel="stylesheet" href="bower_components/reveal.js/lib/css/zenburn.css" />
 		<link rel="stylesheet" href="theme.css" />
-		<script src="bower_components/angular/angular.js"></script>
-		<script src="bower_components/angular-messages/angular-messages.js"></script>
-		<script src="bower_components/reveal.js/js/reveal.js"></script>
-		<script src="bower_components/reveal.js/lib/js/head.min.js"></script>
-		<script src="examples.js"></script>
+
 	</head>
-	<body class="si-background" ng-app="exampleApp">
+	<body class="si-background">
 		<div class="reveal">
 			<div class="slides">
 
@@ -56,7 +52,7 @@
 					<div class="cols">
 						<div class="col-left">
 							<div class="si-example">
-								<div ng-init="name = 'world'">
+								<div ng-example="example1" ng-init="name = 'world'">
 									<h3>Hello {{::name}}</h3>
 									<h3>Hello {{name}}</h3>
 									<input style="font-size:1.5em" ng-model="name" />
@@ -99,21 +95,26 @@
 
 				<section class="si-slide">
 					<h2>Various possible usages</h2>
-					<pre>
-						<code>
-		<ul><li ng-repeat="friend in ::friends">{{friend}}</li></ul>
+					<pre><code data-trim class="html">
+<ul><li ng-repeat="friend in ::friends">{{friend}}</li></ul>
 
-		<p data-tooltip="{{::getTooltip()}}"></p>
-						</code>
-					</pre>
+<p data-tooltip="{{::getTooltip()}}"></p>
+					</code></pre>
 
 				</section>
 
 <!-- ONE TIME BINDING END -->
 
 <!-- NG-MESSAGE START -->
+
+				<section class="si-slide" data-background="#000">
+					<p class="si-giant white-headline">
+						ng-messages
+					</p>
+				</section>
+
 				<section class="si-slide">
-					<div>
+					<div ng-example="example2">
 
 						<form name="loginForm">
 						    <label>Username: </label><br>
@@ -143,16 +144,54 @@
 
 <!-- NG-MESSAGE END -->
 
+<!-- ANGULAR 2 START -->
+
+				<section class="si-slide" data-background="#000">
+					<p class="si-giant white-headline">
+						Quick look at Angular 2
+					</p>
+				</section>
+
+				<section class="si-slide">
+					<ul>
+						<li>Still in early state!</li>
+						<li class="fragment">Written in AtScript = ES6 + Dynamic types + Annotaions</li>
+						<li class="fragment">Fokus on mobile devices</li>
+						<li class="fragment">Keeps powerful features like Dependency Injection, testability</li>
+						<li class="fragment">New stuff like persistence layer, new router, components</li>
+					</ul>
+				</section>
+
+				<section class="si-slide">
+					<h2>Should I wait for Angular 2.0?</h2>
+				</section>
+				<section class="si-slide">
+					<h2>No.</h2>
+				</section>
+				<section class="si-slide">
+					<h2>… But</h2>
+					<ul>
+						<li>Stay tuned for changes</li>
+						<li>Write good Angular apps (use styleguide, patterns)</li>
+						<li>There will be a migration guide!</li>
+					</ul>
+				</section>
+
+<!-- ANGULAR 2 END -->
+
 				<section class="si-slide">
 					<h2>References</h2>
 
-					<ol class="list">
-
-					</ol>
-
 				</section>
+
+
 			</div>
 		</div>
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/angular-messages/angular-messages.js"></script>
+		<script src="bower_components/reveal.js/js/reveal.js"></script>
+		<script src="bower_components/reveal.js/lib/js/head.min.js"></script>
+		<script src="examples.js"></script>
 		<script>
 			Reveal.initialize({
 				width: 1920,
