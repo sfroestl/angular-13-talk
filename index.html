@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>AngularJS perfomance tuning</title>
+		<link rel="stylesheet" href="bower_components/reveal.js/css/reveal.css" />
+		<link rel="stylesheet" href="bower_components/reveal.js/lib/css/zenburn.css" />
+		<link rel="stylesheet" href="theme.css" />
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/angular-messages/angular-messages.js"></script>
+		<script src="bower_components/reveal.js/js/reveal.js"></script>
+		<script src="bower_components/reveal.js/lib/js/head.min.js"></script>
+		<script src="examples.js"></script>
+	</head>
+	<body class="si-background" ng-app="exampleApp">
+		<div class="reveal">
+			<div class="slides">
+
+				<section class="si-slide">
+
+					<header>
+						<h1>Superluminal-nudge</h1>
+						<h1>OR</h1>
+						<h2>The best AngularJS yet!</h2>
+					</header>
+
+					<!-- <div class="cols">
+						<div class="col-left">
+							<p><a href="http://angularjs.org/"><img src="img/angular.png" style="height: 150px" /></a></p>
+						</div>
+						<div class="col-right">
+							<p><a href="https://www.small-improvements.com/" target="_blank"><img src="img/smallimprovements.png" style="height: 150px" /></a></p>
+						</div>
+					</div> -->
+
+					<footer>
+						<a href="https://twitter.com/sfroestl">Sebastian Fröstl</a> &&
+						<a href="https://twitter.com/damienklinnert">Kolja Lange</a></footer>
+				</section>
+
+				<section class="si-slide" data-background="#000">
+					<p class="si-giant white-headline">
+						We <span style="color:red">&lt;3</span> angular.js
+					</p>
+				</section>
+
+<!-- ONE TIME BINDING START -->
+				<section class="si-slide" data-background="#000">
+					<p class="si-giant white-headline">
+						One time bindings
+					</p>
+				</section>
+
+				<section class="si-slide">
+
+					<div class="cols">
+						<div class="col-left">
+							<div class="si-example">
+								<div ng-init="name = 'world'">
+									<h3>Hello {{::name}}</h3>
+									<h3>Hello {{name}}</h3>
+									<input style="font-size:1.5em" ng-model="name" />
+								</div>
+							</div>
+						</div>
+						<div class="col-right">
+							<pre><code class="xml" data-trim>
+<div ng-init="name = 'world'">
+	<h3>Hello {{::name}}</h3>
+	<h3>Hello {{name}}</h3>
+	<input ng-model="name">
+</div>
+							</code></pre>
+						</div>
+					</div>
+				</section>
+
+				<section class="si-slide">
+
+					<h2>Why?</h2>
+					<ul>
+						<li>Databinding is powerful, but Angular needs to watch each expression for changes</li>
+						<li>Some bindings are just one-time reads</li>
+						<li>More watchers slow down the digest loop (where angular reloves changes)</li>
+						<li>Existing solutions: bindonce </li>
+					</ul>
+
+				</section>
+
+				<section class="si-slide">
+					<h2>Facts</h2>
+					<ol>
+						<li>Evaluates the expression within the digest loop and stores the value</li>
+						<li>If the value is defined, mark as stable and deregister watcher</li>
+						<li>Continue the digest loop</li>
+
+					</ol>
+				</section>
+
+				<section class="si-slide">
+					<h2>Various possible usages</h2>
+					<pre>
+						<code>
+		<ul><li ng-repeat="friend in ::friends">{{friend}}</li></ul>
+
+		<p data-tooltip="{{::getTooltip()}}"></p>
+						</code>
+					</pre>
+
+				</section>
+
+<!-- ONE TIME BINDING END -->
+
+<!-- NG-MESSAGE START -->
+				<section class="si-slide">
+					<div>
+
+						<form name="loginForm">
+						    <label>Username: </label><br>
+						    <input type="text"
+						    	   ng-minlength="5"
+						    	   ng-maxlength="20"
+						           name="usernameInput"
+						           ng-model="myUsername"
+						           required />
+
+				           <label>Email: </label><br>
+						    <input type="email"
+						           name="emailInput"
+						           ng-model="myEmail"
+						           required />
+
+						    <div ng-messages="loginForm.usernameInput.$error" style="color:maroon">
+						      	<div ng-message="minlength">Your field is too short</div>
+						    	<div ng-message="maxlength">Your field is too long</div>
+						    </div>
+						    <div ng-messages="loginForm.emailInput.$error" style="color:maroon">
+								<div ng-message="email">This email format is invalid!</div>
+						    </div>
+						</form>
+				    </div>
+				</section>
+
+<!-- NG-MESSAGE END -->
+
+				<section class="si-slide">
+					<h2>References</h2>
+
+					<ol class="list">
+
+					</ol>
+
+				</section>
+			</div>
+		</div>
+		<script>
+			Reveal.initialize({
+				width: 1920,
+				height: 1200,
+				history: true,
+				transition: 'linear',
+				dependencies: [
+					{
+						src: './bower_components/reveal.js/plugin/highlight/highlight.js',
+						async: true,
+						callback: function() {
+							hljs.initHighlightingOnLoad();
+						}
+					}
+				]
+			});
+		</script>
+	</body>
+</html>
