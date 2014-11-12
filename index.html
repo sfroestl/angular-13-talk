@@ -23,7 +23,7 @@
 
 					<footer>
 						<a href="https://twitter.com/sfroestl">Sebastian Fröstl</a> &&
-						<a href="https://twitter.com/damienklinnert">Kolja Lange</a></footer>
+						<a href="https://twitter.com/koljalange">Kolja Lange</a></footer>
 				</section>
 
 				<!-- <section class="si-slide" data-background="#000">
@@ -60,6 +60,28 @@
 
 				<section class="si-slide">
 
+					<h2>Why?</h2>
+					<ul>
+						<li>Data-binding is powerful, but Angular needs to watch each expression for changes</li>
+						<li>Some bindings are just one-time reads</li>
+						<li>More watchers slow down the digest loop (where angular resolves changes)</li>
+						<li>Existing solutions: bindonce </li>
+					</ul>
+
+				</section>
+
+				<section class="si-slide">
+					<h2>Facts</h2>
+					<ol>
+						<li>Evaluates the expression within the digest loop and stores the value</li>
+						<li>If the value is defined, mark as stable and deregister watcher</li>
+						<li>Continue the digest loop</li>
+
+					</ol>
+				</section>
+
+				<section class="si-slide">
+
 					<div class="cols">
 						<div class="col-left">
 							<div class="si-example">
@@ -83,28 +105,6 @@
 				</section>
 
 				<section class="si-slide">
-
-					<h2>Why?</h2>
-					<ul>
-						<li>Data-binding is powerful, but Angular needs to watch each expression for changes</li>
-						<li>Some bindings are just one-time reads</li>
-						<li>More watchers slow down the digest loop (where angular resolves changes)</li>
-						<li>Existing solutions: bindonce </li>
-					</ul>
-
-				</section>
-
-				<section class="si-slide">
-					<h2>Facts</h2>
-					<ol>
-						<li>Evaluates the expression within the digest loop and stores the value</li>
-						<li>If the value is defined, mark as stable and deregister watcher</li>
-						<li>Continue the digest loop</li>
-
-					</ol>
-				</section>
-
-				<section class="si-slide">
 					<h2>Used within any Angular expression</h2>
 					<pre><code data-trim class="html">
 <ul><li ng-repeat="friend in ::friends">{{friend}}</li></ul>
@@ -123,6 +123,17 @@
 						ngModel options
 					</p>
 				</section>
+
+				<section class="si-slide">
+					<h2>Facts</h2>
+					<ul>
+						<li>Tune how your model updates</li>
+						<li>Specify custom events like focus, blur or default</li>
+						<li>Debounce update</li>
+					</ul>
+				</section>
+
+
 
 				<section class="si-slide">
 
@@ -165,17 +176,6 @@
 						</div>
 					</div>
 				</section>
-
-				<section class="si-slide">
-					<h2>Facts</h2>
-					<ul>
-						<li>Tune how your model updates</li>
-						<li>Specify custom events like focus, blur or default</li>
-						<li>Debounce update</li>
-					</ul>
-				</section>
-
-
 
 <!-- NG model options END-->
 
@@ -299,52 +299,6 @@
 
 <!-- NG-MESSAGE END -->
 
-<!-- NG ARIA START -->
-
-				<section class="si-slide" data-background="#000">
-					<p class="si-giant white-headline">
-						ng-aria
-					</p>
-				</section>
-
-				<section class="si-slide">
-					<h2>Accessible Rich Internet Applications</h2>
-				</section>
-
-				<section class="si-slide">
-					<h2>ngAria</h2>
-					<div class="cols">
-						<div class="col-left" ng-example="ngAriaExample">
-				    		<h3><label>Username: </label></h3>
-						    <input type="text"
-							    	   ng-minlength="5"
-							    	   ng-maxlength="20"
-							           name="username"
-							           placeholder="type your username"
-							           ng-model="myUsername"
-							           ng-required="true" />
-						</div>
-						<div class="col-right" >
-							<pre><code class="xml" data-trim>
-<input type="text" class="…"  ng-model="myUsername"  ng-minlength="5" ng-maxlength="20" ng-required="true"tabindex="0" aria-required="true" aria-invalid="true" required="required">
-							</code></pre>
-
-						</div>
-					</div>
-
-				</section>
-
-				<section class="si-slide">
-					<h2>Facts</h2>
-					<ul>
-						<li>Module to help with ARIA support</li>
-						<li>Inspects you app and appends ARIA attributes</li>
-						<li>Works with build in directives like ngModel, ngDisabled, ngShow/Hide, ngClick</li>
-					</ul>
-				</section>
-
-<!-- NG ARIA END -->
-
 <!-- NG-ANIMATE START -->
 
 				<section class="si-slide" data-background="#000">
@@ -393,6 +347,98 @@ element.on('click', function (e) {
 
 <!-- NG-ANIMATE END -->
 
+<!-- NG ARIA START
+
+
+				<section class="si-slide" data-background="#000">
+					<p class="si-giant white-headline">
+						ng-aria
+					</p>
+				</section>
+
+				<section class="si-slide">
+					<h2>Accessible Rich Internet Applications</h2>
+				</section>
+
+				<section class="si-slide">
+					<h2>ngAria</h2>
+					<div class="cols">
+						<div class="col-left" ng-example="ngAriaExample">
+				    		<h3><label>Username: </label></h3>
+						    <input type="text"
+							    	   ng-minlength="5"
+							    	   ng-maxlength="20"
+							           name="username"
+							           placeholder="type your username"
+							           ng-model="myUsername"
+							           ng-required="true" />
+						</div>
+						<div class="col-right" >
+							<pre><code class="xml" data-trim>
+<input type="text" class="…"  ng-model="myUsername"  ng-minlength="5" ng-maxlength="20" ng-required="true"tabindex="0" aria-required="true" aria-invalid="true" required="required">
+							</code></pre>
+
+						</div>
+					</div>
+
+				</section>
+
+				<section class="si-slide">
+					<h2>Facts</h2>
+					<ul>
+						<li>Module to help with ARIA support</li>
+						<li>Inspects you app and appends ARIA attributes</li>
+						<li>Works with build in directives like ngModel, ngDisabled, ngShow/Hide, ngClick</li>
+					</ul>
+				</section>
+
+NG ARIA END -->
+				<section class="si-slide">
+					<h2>Performance tipp:</h2>
+					<p><pre><code data-trim>
+$compileProvider.debugInfoEnabled(false);
+					</code></pre></p>
+					<p>Disables classes like "ng-binding, ng-scope" (used by protractor, batarang etc.)</p>
+				</section>
+
+
+				<section class="si-slide">
+					<h2>What about migrating to 1.3?</h2>
+				</section>
+
+				<section class="si-slide">
+					<h2>We were afraid!</h2>
+					<ul>
+						<li class="fragment">Hybrid app, not a full SPA, other dependencies like jQuery</li>
+						<li class="fragment">Ancient jquery version 1.7</li>
+						<li class="fragment">Angular app 20000+ LOC</li>
+						<li class="fragment">132 directives, 90 controllers, 40 services</li>
+						<li class="fragment">No protractor tests</li>
+						<li class="fragment">Custom performance tunings, complexe directives</li>
+					</ul>
+				</section>
+
+				<section class="si-slide">
+					<h2>Problems:</h2>
+				</section>
+
+				<section class="si-slide">
+					<h2>None.</h2>
+				</section>
+
+				<section class="si-slide"><img src="images/mgc.gif" alt="" style="width:50%"></section>
+
+				<section class="si-slide">
+					<h2>What helped us:</h2>
+					<ul>
+						<li class="fragment">Not many breaking changes</li>
+						<li class="fragment">Dropped support for IE8 some months ago</li>
+						<li class="fragment">Update to jQuery 2.1 was the tricky part</li>
+						<li class="fragment">Used styleguides + software patterns</li>
+						<li class="fragment">No crazy (stupid) customizations</li>
+					</ul>
+				</section>
+
 <!-- ANGULAR 2 START -->
 
 				<section class="si-slide" data-background="#000">
@@ -402,6 +448,7 @@ element.on('click', function (e) {
 				</section>
 
 				<section class="si-slide">
+					<h2>Angular 2</h2>
 					<ul>
 						<li>Still in early state!</li>
 						<li class="fragment">Written in AtScript = ES6 + Dynamic types + Annotations</li>
@@ -435,6 +482,7 @@ element.on('click', function (e) {
 						<li><a href="http://www.youtube.com/channel/UCEGUP3TJJfMsEM_1y8iviSQ">ng-europe youtube channel</a></li>
 						<li><a href="https://docs.google.com/document/d/11YUzC-1d0V1-Q3V0fQ7KSit97HnZoKVygDxpWzEYW0U/edit">At Script Sepc</a></li>
 						<li><a href="https://docs.angularjs.org/guide/accessibility">ng aria guide</a></li>
+						<li><a href="https://drive.google.com/file/d/0Bw6GBXhPGkUGcEVuQlFMQklnUTA/view">ng-europe Angular 1.3 slides</a></li>
 						<li><a href="http://mcgivery.com/angular-1-3-0-improved-accessibility-with-ngaria/">ngAria how to</a></li>
 						<li><a href="http://angularjs.blogspot.de/2014/03/angular-20.html">Angular 2 blogpost</a></li>
 						<li><a href="http://ng-learn.org/2014/03/AngularJS-2-Status-Preview/">Angular 2 status preview</a></li>
