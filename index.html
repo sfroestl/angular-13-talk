@@ -84,12 +84,10 @@
 
 					<div class="cols">
 						<div class="col-left">
-							<div class="si-example">
-								<div ng-example="oneWayBindingExample" ng-init="name = 'Berlin'">
-									<h3>Hello {{::name}}</h3>
-									<h3>Hello {{name}}</h3>
-									<input ng-model="name" />
-								</div>
+							<div ng-example="oneWayBindingExample" ng-init="name = 'Berlin'">
+								<h3>Hello {{::name}}</h3>
+								<h3>Hello {{name}}</h3>
+								<p><input ng-model="name" /></p>
 							</div>
 						</div>
 						<div class="col-right">
@@ -140,11 +138,9 @@
 					<h2>debounce: {'default': 1000}</h2>
 					<div class="cols">
 						<div class="col-left">
-							<div class="si-example">
-								<div ng-example="ngModelOptionsExample">
-									<h3>Search: {{query}}</h3>
-									<input type="text" ng-model="query" ng-model-options="{debounce: {'default': 1000}}">
-								</div>
+							<div ng-example="ngModelOptionsExample">
+								<h3>Search: {{query}}</h3>
+								<p><input type="text" ng-model="query" ng-model-options="{debounce: {'default': 1000}}"></p>
 							</div>
 						</div>
 						<div class="col-right">
@@ -161,11 +157,11 @@
 					<h2>updateOn: 'blur'</h2>
 					<div class="cols">
 						<div class="col-left">
-							<div class="si-example">
-								<div ng-example="ngModelOptionsExample">
-									<h3>Name: {{name}}</h3>
+							<div ng-example="ngModelOptionsExample">
+								<h3>Name: {{name}}</h3>
+								<p>
 									<input type="text" ng-model="name" ng-model-options="{updateOn: 'blur'}">
-								</div>
+								</p>
 							</div>
 						</div>
 						<div class="col-right">
@@ -265,6 +261,7 @@
 					<ul>
 						<li>Show just one error message by default</li>
 						<li>Separate module "angular-messages.js"</li>
+						<li>Can be included from template with ngMessageInclude</li>
 					</ul>
 				</section>
 
@@ -285,21 +282,11 @@
 							           required />
 
 				           	</p>
-							    <span ng-messages="form.usernameInput.$error" style="color:maroon">
-							      	<p ng-message="minlength">Your field is too short</p>
-							    	<p ng-message="maxlength">Your field is too long</p>
-							    	<p ng-message="pattern">No whitespace allowed</p>
-							    </span>
-							<p>
-							    <input type="email"
-							           name="emailInput"
-							           ng-model="myEmail"
-							           placeholder="Email"
-							           required />
-				           	</p>
-							    <span ng-messages="form.emailInput.$error" style="color:maroon">
-									<p ng-message="email">This email format is invalid!</p>
-							    </span>
+						    <span ng-messages="form.usernameInput.$error" style="color:maroon">
+						      	<p ng-message="minlength">Your field is too short</p>
+						    	<p ng-message="maxlength">Your field is too long</p>
+						    	<p ng-message="pattern">No whitespace allowed</p>
+						    </span>
 							</form>
 					    </div>
 					    <div class="col-right">
@@ -326,7 +313,9 @@
 
 				<section class="si-slide">
 					<ul>
-						<li>Much more stable</li>
+						<li>Tons of bugfixes</li>
+						<li>No more need to set display property on ng-hide animations</li>
+						<li>Better support for 3rd party animations</li>
 						<li>New .animate() method</li>
 						<li>Promises in JavaScript animations</li>
 					</ul>
