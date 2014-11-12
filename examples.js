@@ -1,6 +1,8 @@
 (function (sandbox) {
-    sandbox.angular.module('example1', []);
-    sandbox.angular.module('example2', ['ngMessages']);
+    sandbox.angular.module('oneWayBindingExample', []);
+    sandbox.angular.module('ngMessageExample', ['ngMessages']);
+    sandbox.angular.module('ngModelOptionsExample', []);
+    sandbox.angular.module('ngAriaExample', ['ngAria']);
 
     var examples = document.querySelectorAll('[ng-example]');
 

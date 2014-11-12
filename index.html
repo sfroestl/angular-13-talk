@@ -15,29 +15,40 @@
 				<section class="si-slide">
 
 					<header>
-						<h1>Superluminal-nudge</h1>
-						<h1>OR</h1>
-						<h2>The best AngularJS yet!</h2>
+						<h2>Angular 1.3 – Superluminal-nudge</h2>
+						<h2>||</h2>
+						<h2>The best Angular yet!</h2>
 					</header>
-
-					<!-- <div class="cols">
-						<div class="col-left">
-							<p><a href="http://angularjs.org/"><img src="img/angular.png" style="height: 150px" /></a></p>
-						</div>
-						<div class="col-right">
-							<p><a href="https://www.small-improvements.com/" target="_blank"><img src="img/smallimprovements.png" style="height: 150px" /></a></p>
-						</div>
-					</div> -->
+					<img src="images/ngeurope.png" style="height: 250px" />
 
 					<footer>
 						<a href="https://twitter.com/sfroestl">Sebastian Fröstl</a> &&
 						<a href="https://twitter.com/damienklinnert">Kolja Lange</a></footer>
 				</section>
 
-				<section class="si-slide" data-background="#000">
+				<!-- <section class="si-slide" data-background="#000">
 					<p class="si-giant white-headline">
 						We <span style="color:red">&lt;3</span> angular.js
 					</p>
+				</section> -->
+
+<!-- Introduction -->
+
+				<section class="si-slide" data-background="#000">
+					<p class="si-giant white-headline">
+						Huge performance improvements!
+					</p>
+
+				</section>
+
+				<section class="si-slide">
+					<img src="/images/ng13-perf.png" alt="">
+					<footer><a href="https://drive.google.com/file/d/0Bw6GBXhPGkUGcEVuQlFMQklnUTA/view">Visit source</a></footer>
+				</section>
+
+				<section class="si-slide">
+					<h2>Benchmarking tool Benchpress</h2>
+					<h2>github.com/angular/benchpress</h2>
 				</section>
 
 <!-- ONE TIME BINDING START -->
@@ -52,19 +63,19 @@
 					<div class="cols">
 						<div class="col-left">
 							<div class="si-example">
-								<div ng-example="example1" ng-init="name = 'world'">
+								<div ng-example="oneWayBindingExample" ng-init="name = 'Berlin'">
 									<h3>Hello {{::name}}</h3>
 									<h3>Hello {{name}}</h3>
-									<input style="font-size:1.5em" ng-model="name" />
+									<input ng-model="name" />
 								</div>
 							</div>
 						</div>
 						<div class="col-right">
 							<pre><code class="xml" data-trim>
-<div ng-init="name = 'world'">
-	<h3>Hello {{::name}}</h3>
-	<h3>Hello {{name}}</h3>
-	<input ng-model="name">
+<div ng-init="name='Berlin'">
+  <p>Hello {{::name}}</p>
+  <p>Hello {{name}}</p>
+  <input ng-model="name">
 </div>
 							</code></pre>
 						</div>
@@ -75,9 +86,9 @@
 
 					<h2>Why?</h2>
 					<ul>
-						<li>Databinding is powerful, but Angular needs to watch each expression for changes</li>
+						<li>Data-binding is powerful, but Angular needs to watch each expression for changes</li>
 						<li>Some bindings are just one-time reads</li>
-						<li>More watchers slow down the digest loop (where angular reloves changes)</li>
+						<li>More watchers slow down the digest loop (where angular resolves changes)</li>
 						<li>Existing solutions: bindonce </li>
 					</ul>
 
@@ -94,7 +105,7 @@
 				</section>
 
 				<section class="si-slide">
-					<h2>Various possible usages</h2>
+					<h2>Used within any Angular expression</h2>
 					<pre><code data-trim class="html">
 <ul><li ng-repeat="friend in ::friends">{{friend}}</li></ul>
 
@@ -105,6 +116,69 @@
 
 <!-- ONE TIME BINDING END -->
 
+<!-- NG model options -->
+
+				<section class="si-slide" data-background="#000">
+					<p class="si-giant white-headline">
+						ngModel options
+					</p>
+				</section>
+
+				<section class="si-slide">
+
+					<h2>debounce: {'default': 1000}</h2>
+					<div class="cols">
+						<div class="col-left">
+							<div class="si-example">
+								<div ng-example="ngModelOptionsExample">
+									<h3>Search: {{query}}</h3>
+									<input type="text" ng-model="query" ng-model-options="{debounce: {'default': 1000}}">
+								</div>
+							</div>
+						</div>
+						<div class="col-right">
+							<pre><code class="xml" data-trim>
+<h3>Search: {{query}}</h3>
+<input ng-model="query" ng-model-options="{debounce: {'default': 1000}}">
+							</code></pre>
+						</div>
+					</div>
+				</section>
+
+				<section class="si-slide">
+
+					<h2>updateOn: 'blur'</h2>
+					<div class="cols">
+						<div class="col-left">
+							<div class="si-example">
+								<div ng-example="ngModelOptionsExample">
+									<h3>Name: {{name}}</h3>
+									<input type="text" ng-model="name" ng-model-options="{updateOn: 'blur'}">
+								</div>
+							</div>
+						</div>
+						<div class="col-right">
+							<pre><code class="xml" data-trim>
+<h3>Name: {{name}}</h3>
+<input ng-model="name" ng-model-options="{updateOn: 'blur'}">
+							</code></pre>
+						</div>
+					</div>
+				</section>
+
+				<section class="si-slide">
+					<h2>Facts</h2>
+					<ul>
+						<li>Tune how your model updates</li>
+						<li>Specify custom events like focus, blur or default</li>
+						<li>Debounce update</li>
+					</ul>
+				</section>
+
+
+
+<!-- NG model options END-->
+
 <!-- NG-MESSAGE START -->
 
 				<section class="si-slide" data-background="#000">
@@ -114,7 +188,7 @@
 				</section>
 
 				<section class="si-slide">
-					<div ng-example="example2">
+					<div ng-example="ngMessageExample">
 
 						<form name="loginForm">
 						    <label>Username: </label><br>
@@ -144,6 +218,53 @@
 
 <!-- NG-MESSAGE END -->
 
+
+<!-- NG ARIA START -->
+
+				<section class="si-slide" data-background="#000">
+					<p class="si-giant white-headline">
+						ng-aria
+					</p>
+				</section>
+
+				<section class="si-slide">
+					<h2>Accessible Rich Internet Applications</h2>
+				</section>
+
+				<section class="si-slide">
+					<h2>ngAria</h2>
+					<div class="cols">
+						<div class="col-left" ng-example="ngAriaExample">
+				    		<h3><label>Username: </label></h3>
+						    <input type="text"
+							    	   ng-minlength="5"
+							    	   ng-maxlength="20"
+							           name="username"
+							           placeholder="type your username"
+							           ng-model="myUsername"
+							           ng-required="true" />
+						</div>
+						<div class="col-right" >
+							<pre><code class="xml" data-trim>
+<input type="text" class="…"  ng-model="myUsername"  ng-minlength="5" ng-maxlength="20" ng-required="true"tabindex="0" aria-required="true" aria-invalid="true" required="required">
+							</code></pre>
+
+						</div>
+					</div>
+
+				</section>
+
+				<section class="si-slide">
+					<h2>Facts</h2>
+					<ul>
+						<li>Module to help with ARIA support</li>
+						<li>Inspects you app and appends ARIA attributes</li>
+						<li>Works with build in directives like ngModel, ngDisabled, ngShow/Hide, ngClick</li>
+					</ul>
+				</section>
+
+<!-- NG ARIA END -->
+
 <!-- ANGULAR 2 START -->
 
 				<section class="si-slide" data-background="#000">
@@ -155,7 +276,7 @@
 				<section class="si-slide">
 					<ul>
 						<li>Still in early state!</li>
-						<li class="fragment">Written in AtScript = ES6 + Dynamic types + Annotaions</li>
+						<li class="fragment">Written in AtScript = ES6 + Dynamic types + Annotations</li>
 						<li class="fragment">Fokus on mobile devices</li>
 						<li class="fragment">Keeps powerful features like Dependency Injection, testability</li>
 						<li class="fragment">New stuff like persistence layer, new router, components</li>
@@ -172,16 +293,24 @@
 					<h2>… But</h2>
 					<ul>
 						<li>Stay tuned for changes</li>
-						<li>Write good Angular apps (use styleguide, patterns)</li>
+						<li>Write good Angular apps (use style-guides, patterns)</li>
 						<li>There will be a migration guide!</li>
 					</ul>
 				</section>
 
 <!-- ANGULAR 2 END -->
 
+<!-- References -->
 				<section class="si-slide">
 					<h2>References</h2>
-
+					<ul>
+						<li><a href="http://www.youtube.com/channel/UCEGUP3TJJfMsEM_1y8iviSQ">ng-europe youtube channel</a></li>
+						<li><a href="https://docs.google.com/document/d/11YUzC-1d0V1-Q3V0fQ7KSit97HnZoKVygDxpWzEYW0U/edit">At Script Sepc</a></li>
+						<li><a href="https://docs.angularjs.org/guide/accessibility">ng aria guide</a></li>
+						<li><a href="http://mcgivery.com/angular-1-3-0-improved-accessibility-with-ngaria/">ngAria how to</a></li>
+						<li><a href="http://angularjs.blogspot.de/2014/03/angular-20.html">Angular 2 blogpost</a></li>
+						<li><a href="http://ng-learn.org/2014/03/AngularJS-2-Status-Preview/">Angular 2 status preview</a></li>
+					</ul>
 				</section>
 
 
@@ -189,6 +318,7 @@
 		</div>
 		<script src="bower_components/angular/angular.js"></script>
 		<script src="bower_components/angular-messages/angular-messages.js"></script>
+		<script src="bower_components/angular-aria/angular-aria.js"></script>
 		<script src="bower_components/reveal.js/js/reveal.js"></script>
 		<script src="bower_components/reveal.js/lib/js/head.min.js"></script>
 		<script src="examples.js"></script>
