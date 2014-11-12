@@ -179,6 +179,70 @@
 
 <!-- NG model options END-->
 
+<!-- NG-model $validators START -->
+
+				<section class="si-slide" data-background="#000">
+					<p class="si-giant white-headline">
+						ngModel $validators
+					</p>
+				</section>
+
+				<section class="si-slide">
+					<h2>$asyncValidators</h2>
+					<div class="cols">
+						<div class="col-left" ng-example="ngValidatorsExample">
+
+							<form name="form">
+								<p>
+								    <input type="text"
+								    	   ng-minlength="5"
+								    	   ng-maxlength="20"
+								           name="usernameInput"
+								           ng-model="myUsername"
+								           placeholder="Username"
+								           required
+								           available/>
+					            </p>
+							    <span ng-messages="form.usernameInput.$error" style="color:maroon">
+							      	<p ng-message="minlength">Your field is too short</p>
+							    	<p ng-message="maxlength">Your field is too long</p>
+							    </span>
+							    <p ng-if="form.usernameInput.$pending" style="color:maroon">
+							    	Checking Server…
+							    </p>
+							</form>
+					    </div>
+						<div class="col-right">
+							<pre><code class="js" data-trim style="font-size: 1.6em">
+.directive('available', function ($timeout) {
+    return {
+        require: 'ngModel',
+        link: function ($scope, element, attrs, ngModel) {
+            ngModel.$asyncValidators.available =
+            function (username) {
+                return $timeout(function () {
+                    return true;
+                }, 1000, false);
+            };
+        }
+    };
+});
+							</code></pre>
+						</div>
+			    	</div>
+				</section>
+
+				<section class="si-slide">
+					<h2>Facts</h2>
+					<ul>
+						<li>Write custom, reusable validators</li>
+						<li>Use $asyncValidators for server-side validation</li>
+						<li>Great in combination with ngModel options</li>
+					</ul>
+				</section>
+
+<!-- NG-model $validators END -->
+
 <!-- NG-MESSAGE START -->
 
 				<section class="si-slide" data-background="#000">
@@ -188,36 +252,52 @@
 				</section>
 
 				<section class="si-slide">
-					<div ng-example="ngMessageExample">
+					<h2>ngMessages</h2>
+					<div class="cols">
+						<div class="col-left" ng-example="ngMessageExample">
 
-						<form name="loginForm">
-						    <label>Username: </label><br>
-						    <input type="text"
-						    	   ng-minlength="5"
-						    	   ng-maxlength="20"
-						           name="usernameInput"
-						           ng-model="myUsername"
-						           required />
+							<form name="form">
+							<p>
+							    <input type="text"
+							    	   ng-minlength="5"
+							    	   ng-maxlength="20"
+							           ng-pattern="/^\S+$/"
+							           name="usernameInput"
+							           ng-model="myUsername"
+							           placeholder="Username"
+							           required />
 
-				           <label>Email: </label><br>
-						    <input type="email"
-						           name="emailInput"
-						           ng-model="myEmail"
-						           required />
-
-						    <div ng-messages="loginForm.usernameInput.$error" style="color:maroon">
-						      	<div ng-message="minlength">Your field is too short</div>
-						    	<div ng-message="maxlength">Your field is too long</div>
-						    </div>
-						    <div ng-messages="loginForm.emailInput.$error" style="color:maroon">
-								<div ng-message="email">This email format is invalid!</div>
-						    </div>
-						</form>
+				           	</p>
+							    <span ng-messages="form.usernameInput.$error" style="color:maroon">
+							      	<p ng-message="minlength">Your field is too short</p>
+							    	<p ng-message="maxlength">Your field is too long</p>
+							    	<p ng-message="pattern">No whitespace allowed</p>
+							    </span>
+							<p>
+							    <input type="email"
+							           name="emailInput"
+							           ng-model="myEmail"
+							           placeholder="Email"
+							           required />
+				           	</p>
+							    <span ng-messages="form.emailInput.$error" style="color:maroon">
+									<p ng-message="email">This email format is invalid!</p>
+							    </span>
+							</form>
+					    </div>
+					    <div class="col-right">
+					    <pre><code class="xml" data-trim style="font-size:2em">
+<span ng-messages="form.usernameInput.$error">
+	<p ng-message="minlength">…</p>
+	<p ng-message="maxlength">…</p>
+	<p ng-message="pattern">…</p>
+</span>
+						</code></pre>
+					    </div>
 				    </div>
 				</section>
 
 <!-- NG-MESSAGE END -->
-
 
 <!-- NG ARIA START -->
 
@@ -264,6 +344,54 @@
 				</section>
 
 <!-- NG ARIA END -->
+
+<!-- NG-ANIMATE START -->
+
+				<section class="si-slide" data-background="#000">
+					<p class="si-giant white-headline">
+						ng-animate
+					</p>
+				</section>
+
+				<section class="si-slide">
+					<ul>
+						<li>Much more stable</li>
+						<li>New .animate() method</li>
+						<li>Promises in JavaScript animations</li>
+					</ul>
+				</section>
+
+				<section class="si-slide">
+					<h2>$animate.animate()</h2>
+
+					<div class="cols">
+						<div class="col-left">
+							<div class="si-example">
+								<div ng-example="ngAnimateExample">
+									<div animate-to-click>
+										<div class="click-indicator">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-right">
+							<pre><code class="js" data-trim style="font-size: 2em">
+element.on('click', function (e) {
+
+    $animate.animate(angular.element(indicator), {}, {
+        left: e.offsetX + 'px',
+        top: e.offsetY + 'px'
+    }, 'is-animating');
+
+    $scope.$digest();
+});
+							</code></pre>
+						</div>
+					</div>
+				</section>
+
+<!-- NG-ANIMATE END -->
 
 <!-- ANGULAR 2 START -->
 
@@ -319,6 +447,7 @@
 		<script src="bower_components/angular/angular.js"></script>
 		<script src="bower_components/angular-messages/angular-messages.js"></script>
 		<script src="bower_components/angular-aria/angular-aria.js"></script>
+		<script src="bower_components/angular-animate/angular-animate.js"></script>
 		<script src="bower_components/reveal.js/js/reveal.js"></script>
 		<script src="bower_components/reveal.js/lib/js/head.min.js"></script>
 		<script src="examples.js"></script>

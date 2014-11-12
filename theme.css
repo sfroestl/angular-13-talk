@@ -88,13 +88,16 @@ input {
 	color: #000;
 }
 
+.si-slide .cols {
+	display: flex;
+	align-items: center;
+}
+
 .si-slide .col-left {
-	float: left;
 	width: 50%;
 }
 
 .si-slide .col-right {
-	float: left;
 	width: 50%;
 }
 
@@ -139,4 +142,23 @@ input {
 
 .reveal .slides section .fragment.current-visible.current-fragment {
     display: inline-block;
+}
+
+.click-indicator {
+	position: absolute;
+	height: 25px;
+	width: 25px;
+	border-radius: 200%;
+	background: red;
+	transition: all .5s;
+}
+
+.click-indicator.is-animating {
+	transform: scale(1.4);
+	background: blue;
+}
+
+[animate-to-click] {
+	position: relative;
+	height: 500px;
 }
