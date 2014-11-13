@@ -90,7 +90,9 @@ input {
 
 .si-slide .cols {
 	display: flex;
+	display: -webkit-flex;
 	align-items: center;
+	-webkit-align-items: center;
 }
 
 .si-slide .col-left {
