@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<title>AngularJS perfomance tuning</title>
+		<title>Angular 1.3 talk slides</title>
 		<link rel="stylesheet" href="bower_components/reveal.js/css/reveal.css" />
 		<link rel="stylesheet" href="bower_components/reveal.js/lib/css/zenburn.css" />
 		<link rel="stylesheet" href="theme.css" />
@@ -26,13 +26,15 @@
 						<a href="https://twitter.com/koljalange">Kolja Lange</a></footer>
 				</section>
 
-				<!-- <section class="si-slide" data-background="#000">
-					<p class="si-giant white-headline">
-						We <span style="color:red">&lt;3</span> angular.js
-					</p>
-				</section> -->
-
 <!-- Introduction -->
+
+
+				<section class="si-slide" style="min-height:500px">
+					<h3>This talk is about {some} new features of Angular 1.3 and a quick look on Angular 2.</h3>
+					<h3>Be sure to check out the references for further information</h3>
+
+					<footer>(this slide has been added afterwards)</footer>
+				</section>
 
 				<section class="si-slide" data-background="#000">
 					<p class="si-giant white-headline">
@@ -48,7 +50,7 @@
 
 				<section class="si-slide">
 					<h2>Benchmarking tool Benchpress</h2>
-					<h2>github.com/angular/benchpress</h2>
+					<h2><a href="https://github.com/angular/benchpress">github.com/angular/benchpress</a></h2>
 				</section>
 
 <!-- ONE TIME BINDING START -->
@@ -353,52 +355,6 @@ element.on('click', function (e) {
 
 <!-- NG-ANIMATE END -->
 
-<!-- NG ARIA START
-
-
-				<section class="si-slide" data-background="#000">
-					<p class="si-giant white-headline">
-						ng-aria
-					</p>
-				</section>
-
-				<section class="si-slide">
-					<h2>Accessible Rich Internet Applications</h2>
-				</section>
-
-				<section class="si-slide">
-					<h2>ngAria</h2>
-					<div class="cols">
-						<div class="col-left" ng-example="ngAriaExample">
-				    		<h3><label>Username: </label></h3>
-						    <input type="text"
-							    	   ng-minlength="5"
-							    	   ng-maxlength="20"
-							           name="username"
-							           placeholder="type your username"
-							           ng-model="myUsername"
-							           ng-required="true" />
-						</div>
-						<div class="col-right" >
-							<pre><code class="xml" data-trim>
-<input type="text" class="…"  ng-model="myUsername"  ng-minlength="5" ng-maxlength="20" ng-required="true"tabindex="0" aria-required="true" aria-invalid="true" required="required">
-							</code></pre>
-
-						</div>
-					</div>
-
-				</section>
-
-				<section class="si-slide">
-					<h2>Facts</h2>
-					<ul>
-						<li>Module to help with ARIA support</li>
-						<li>Inspects you app and appends ARIA attributes</li>
-						<li>Works with build in directives like ngModel, ngDisabled, ngShow/Hide, ngClick</li>
-					</ul>
-				</section>
-
-NG ARIA END -->
 				<section class="si-slide">
 					<h2>Performance tipp:</h2>
 					<p><pre><code data-trim>
@@ -483,9 +439,8 @@ $compileProvider.debugInfoEnabled(false);
 				<section class="si-slide">
 					<h1 style="margin-bottom: 1.8em">Thanks!</h1>
 
-
- 					<h3>Sebastian Fröstl @sfroestl</h3>
-					<h3 style="margin-bottom: 1.8em">Kolja Lange @koljalange</h3>
+ 					<h3>Sebastian Fröstl <a href="https://twitter.com/sfroestl">@sfroestl</a></h3>
+					<h3 style="margin-bottom: 1.8em">Kolja Lange <a href="https://twitter.com/koljalange">@koljalange</a></h3>
 
 					<img src="images/si.png" style="width:35%"/>
 
@@ -502,11 +457,19 @@ $compileProvider.debugInfoEnabled(false);
 					<ul>
 						<li><a href="http://www.youtube.com/channel/UCEGUP3TJJfMsEM_1y8iviSQ">ng-europe youtube channel</a></li>
 						<li><a href="https://docs.google.com/document/d/11YUzC-1d0V1-Q3V0fQ7KSit97HnZoKVygDxpWzEYW0U/edit">At Script Sepc</a></li>
-						<li><a href="https://docs.angularjs.org/guide/accessibility">ng aria guide</a></li>
 						<li><a href="https://drive.google.com/file/d/0Bw6GBXhPGkUGcEVuQlFMQklnUTA/view">ng-europe Angular 1.3 slides</a></li>
-						<li><a href="http://mcgivery.com/angular-1-3-0-improved-accessibility-with-ngaria/">ngAria how to</a></li>
+						<li><a href="http://www.yearofmoo.com/2014/09/taming-forms-in-angularjs-1-3.html">ng-forms</a></li>
+						<li><a href="https://docs.angularjs.org/guide/accessibility">ng aria guide</a></li>
 						<li><a href="http://angularjs.blogspot.de/2014/03/angular-20.html">Angular 2 blogpost</a></li>
 						<li><a href="http://ng-learn.org/2014/03/AngularJS-2-Status-Preview/">Angular 2 status preview</a></li>
+					</ul>
+				</section>
+				<section class="si-slide">
+					<h2>FYI AngularJS Styleguides</h2>
+					<ul>
+						<li><a href="https://github.com/johnpapa/angularjs-styleguide">AngularJS Style Guide by John Papa</a></li>
+						<li><a href="https://github.com/toddmotto/angularjs-styleguide">AngularJS Style Guide by Todd Moto</a></li>
+						<li><a href="https://www.youtube.com/watch?v=62RvRQuMVyg">Writing a Massive Angular App @ ng-conf</a></li>
 					</ul>
 				</section>
 
